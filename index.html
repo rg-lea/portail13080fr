@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13080.fr, le portail du quartier de Luynes</title>
+<link rel="icon" href="https://actus.13080.fr/wp-content/uploads/2026/08/CIQ-LEA-Logo-carre-bleu.png">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W1ZCPKJ1TB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W1ZCPKJ1TB');
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y7givzu010");
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+  :root{
+    --navy: #242E63;
+    --navy-deep: #171B41;
+    --gold: #FFC500;
+    --gold-dark: #AD8901;
+    --white: #FFFFFF;
+    --navy-muted-on-white: rgba(36,46,99,.62);
+    --white-muted-on-navy: rgba(255,255,255,.72);
+    --line-on-white: rgba(36,46,99,.12);
+    --line-on-navy: rgba(255,255,255,.16);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--navy);
+    font-family:'Outfit', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3{
+    font-family:'Outfit', sans-serif;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.015em;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  :focus-visible{
+    outline:2px solid var(--gold-dark);
+    outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* =========================================================
+     HEADER 1 — bandeau logo
+     ========================================================= */
+  .site-header {
+    background-color: #242E63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+  }
+  .site-header__logo-link { display: block; line-height: 0; }
+  .site-header__logo {
+    display: block !important;
+    width: 300px !important;
+    height: auto !important;
+    max-width: 90vw !important;
+  }
+
+  /* =========================================================
+     HEADER 2 — navigation (simplifiée : lien du site + contact)
+     ========================================================= */
+  .sub-header {
+    background-color: #242E63;
+    padding: 16px 24px;
+    position: relative;
+    z-index: 1000;
+  }
+  .sub-header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .sub-header__brand { display: flex; align-items: center; gap: 16px; }
+  .sub-header__site-link {
+    color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; white-space: nowrap;
+  }
+  .sub-header__site-link:hover, .sub-header__site-link:focus { color: #FFC500; }
+  .sub-header__nav { display: flex; align-items: center; gap: 24px; }
+  .sub-header__btn {
+    text-decoration: none; font-size: 15px; font-weight: 600; padding: 8px 18px; border-radius: 6px;
+    white-space: nowrap; transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .sub-header__btn--primary { background-color: #FFC500; color: #242E63; }
+  .sub-header__btn--primary:hover, .sub-header__btn--primary:focus { background-color: #e6b100; }
+
+  /* =========================================================
+     INTRO — pas de hero : une ligne de contexte, on va droit au but
+     ========================================================= */
+  .intro{ padding:28px 0 8px; }
+  .intro h1{
+    font-size:clamp(1.4rem,2.4vw,1.7rem);
+    font-weight:700;
+    color:var(--navy);
+    line-height:1.25;
+  }
+  .intro p{
+    color:var(--navy-muted-on-white);
+    font-size:.98rem;
+    line-height:1.5;
+    margin:8px 0 0;
+    max-width:70ch;
+  }
+
+  /* =========================================================
+     PORTAIL — mise en page épurée, 2 niveaux, pleine largeur
+     ========================================================= */
+  .portal{ padding:8px 0 72px; }
+  .wrap--wide{ max-width:1360px; }
+
+  .tier{ margin-bottom:44px; }
+  .tier:last-child{ margin-bottom:0; }
+  .tier__label{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--navy-muted-on-white);
+    opacity:.75;
+    margin-bottom:16px;
+  }
+
+  /* Niveau 1 — les 2 sites de référence, grands blocs doux */
+  .tier--main .tier__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .site-card{
+    background:#FAF9F6;
+    border-radius:26px;
+    padding:40px 44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+    text-decoration:none;
+    transition:background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  .site-card:hover{
+    background:#F5F3EE;
+    box-shadow:0 16px 36px rgba(36,46,99,.07);
+    transform:translateY(-2px);
+  }
+  .site-card__kicker{
+    display:block;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    margin-bottom:8px;
+  }
+  .site-card h2{
+    font-size:1.45rem;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .site-card__domain{
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.02em;
+    color:var(--navy-muted-on-white);
+    margin-top:6px;
+  }
+  .site-card__cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14.5px;
+    background:var(--gold-dark);
+    color:var(--white);
+    white-space:nowrap;
+    transition:background-color .2s ease;
+    flex-shrink:0;
+  }
+  .site-card__cta:hover{ background:#8f7101; }
+
+  /* Niveau 2 — les autres sites, cartes discrètes */
+  .tier--sub .tier__grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+  }
+  .mini-card{
+    background:var(--white);
+    border:1px solid var(--line-on-white);
+    border-radius:20px;
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    text-decoration:none;
+    transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  .mini-card:hover{
+    border-color:rgba(36,46,99,.16);
+    box-shadow:0 12px 28px rgba(36,46,99,.06);
+    transform:translateY(-2px);
+  }
+  .mini-card h3{
+    font-size:1.02rem;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .mini-card__domain{
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:.02em;
+    color:var(--navy-muted-on-white);
+    margin-top:4px;
+  }
+  .mini-card__cta{
+    margin-top:auto;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:10px 16px;
+    border-radius:9px;
+    font-weight:600;
+    font-size:13px;
+    background:var(--gold-dark);
+    color:var(--white);
+    align-self:flex-start;
+    transition:background-color .2s ease;
+  }
+  .mini-card__cta:hover{ background:#8f7101; }
+  .mini-card--soon{ background:#FAF9F6; }
+  .mini-card--soon h3,
+  .mini-card--soon .mini-card__domain{ color:var(--navy-muted-on-white); }
+  .mini-card__cta--soon{
+    background:rgba(36,46,99,.07);
+    color:var(--navy-muted-on-white);
+    cursor:not-allowed;
+    pointer-events:none;
+  }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  .site-footer {
+    background-color: #242E63;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+    text-align: center;
+  }
+  .site-footer__logo { display: block; width: 300px; height: auto; max-width: 90vw; margin: 0 0 20px 0; }
+  .site-footer__links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
+  .site-footer__link { color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 500; }
+  .site-footer__link:hover, .site-footer__link:focus { color: #FFC500; }
+  .site-footer__separator { color: #FFC500; font-size: 14px; }
+
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  @media (max-width:900px){
+    .tier--sub .tier__grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .wrap{ padding:0 18px; }
+    .intro{ padding:22px 0 4px; }
+    .portal{ padding:14px 0 44px; }
+    .tier--main .tier__grid{ grid-template-columns:1fr; }
+    .tier--sub .tier__grid{ grid-template-columns:1fr; }
+    .site-card{ padding:26px 24px; }
+    .site-card__cta{ width:100%; justify-content:center; }
+    .site-footer__logo{ width:220px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER 1 — logo
+     ========================================================= -->
+<header class="site-header">
+  <a href="https://13080.fr" class="site-header__logo-link" aria-label="Retour à l'accueil">
+    <img src="https://actus.13080.fr/wp-content/uploads/2026/08/CIQ-LEA-Logo-rectangulaire-blanc.png" alt="CIQ Léa Actus" class="site-header__logo">
+  </a>
+</header>
+
+<!-- =========================================================
+     HEADER 2 — navigation simplifiée
+     ========================================================= -->
+<header class="sub-header">
+  <div class="sub-header__inner">
+    <div class="sub-header__brand">
+      <a href="https://13080.fr/" class="sub-header__site-link">13080.fr</a>
+    </div>
+
+    <nav class="sub-header__nav" aria-label="Menu principal">
+      <a href="https://ciq.13080.fr" class="sub-header__btn sub-header__btn--primary">Nous contacter</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =========================================================
+     INTRO — pas de hero, une seule ligne de contexte
+     ========================================================= -->
+<section class="intro">
+  <div class="wrap">
+    <h1>Tous les sites du réseau 13080.fr</h1>
+  </div>
+</section>
+
+<!-- =========================================================
+     PORTAIL — 2 niveaux, épuré, pleine largeur
+     ========================================================= -->
+<section class="portal">
+  <div class="wrap wrap--wide">
+
+    <!-- Niveau 1 : les 2 sites de référence -->
+    <div class="tier tier--main">
+      <span class="tier__label">Sites de référence</span>
+      <div class="tier__grid">
+
+        <a href="https://ciq.13080.fr" class="site-card">
+          <div>
+            <span class="site-card__kicker">Association</span>
+            <h2>CIQ Luynois en Action</h2>
+            <div class="site-card__domain">ciq.13080.fr</div>
+          </div>
+          <span class="site-card__cta">
+            Découvrir le site
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a href="https://actus.13080.fr" class="site-card">
+          <div>
+            <span class="site-card__kicker">Actualités</span>
+            <h2>Actualités &amp; communiqués</h2>
+            <div class="site-card__domain">actus.13080.fr</div>
+          </div>
+          <span class="site-card__cta">
+            Lire les actualités
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Niveau 2 : les autres sites -->
+    <div class="tier tier--sub">
+      <span class="tier__label">Autres sites</span>
+      <div class="tier__grid">
+
+        <div class="mini-card mini-card--soon" aria-disabled="true">
+          <div>
+            <h3>Village de Luynes</h3>
+            <div class="mini-card__domain">village.13080.fr</div>
+          </div>
+          <span class="mini-card__cta mini-card__cta--soon">Bientôt disponible</span>
+        </div>
+
+        <a href="https://adherents.13080.fr" class="mini-card">
+          <div>
+            <h3>Espace adhérents</h3>
+            <div class="mini-card__domain">adherents.13080.fr</div>
+          </div>
+          <span class="mini-card__cta">
+            Accéder à l'espace
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a href="https://forms.13080.fr" class="mini-card">
+          <div>
+            <h3>Formulaires</h3>
+            <div class="mini-card__domain">forms.13080.fr</div>
+          </div>
+          <span class="mini-card__cta">
+            Voir les formulaires
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a href="https://data.13080.fr" class="mini-card">
+          <div>
+            <h3>Données ouvertes</h3>
+            <div class="mini-card__domain">data.13080.fr</div>
+          </div>
+          <span class="mini-card__cta">
+            Explorer les données
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER — inchangé
+     ========================================================= -->
+<footer class="site-footer">
+  <img src="https://actus.13080.fr/wp-content/uploads/2026/08/CIQ-LEA-Logo-rectangulaire-blanc.png" alt="CIQ Léa" class="site-footer__logo">
+  <nav class="site-footer__links" aria-label="Liens du pied de page">
+    <a href="https://13080.fr" class="site-footer__link">Retour sur 13080.fr</a>
+    <span class="site-footer__separator">•</span>
+    <a href="https://13080.fr/mentions-legales" class="site-footer__link">Mentions légales</a>
+    <span class="site-footer__separator">•</span>
+    <a href="https://ciq.13080.fr/contact" class="site-footer__link">Nous contacter</a>
+  </nav>
+</footer>
+
+</body>
+</html>
