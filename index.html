@@ -65,17 +65,33 @@
   .sub-header__btn--primary{background-color:#FFC500;color:#242E63;}
   .sub-header__btn--primary:hover,.sub-header__btn--primary:focus{background-color:#e6b100;}
 
-  /* À LA UNE : bandeau discret, un seul lien vers actus.13080.fr/une */
-  .alert{ background:var(--white); border-bottom:1px solid var(--line); }
-  .alert[hidden]{ display:none; }
-  .alert__link{ max-width:1080px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:13px 24px; transition:background-color .2s ease; }
-  .alert__link:hover,.alert__link:focus-visible{ background:var(--tint); }
-  .alert__label{ flex:none; display:inline-flex; align-items:center; gap:8px; font-size:.88rem; font-weight:700; }
-  .alert__dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); }
-  .alert__title{ flex:1; min-width:0; font-size:1rem; font-weight:500; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; }
-  .alert__more{ flex:none; font-size:.88rem; font-weight:600; color:var(--muted); white-space:nowrap; }
-  .alert__chev{ flex:none; color:var(--muted); transition:transform .2s ease; }
-  .alert__link:hover .alert__chev{ transform:translateX(3px); color:var(--navy); }
+  /* À LA UNE : carrousel des articles épinglés */
+  .une{ margin-bottom:16px; padding:20px 26px 10px; background:var(--white); border:1px solid var(--line); border-radius:22px; }
+  .une[hidden]{ display:none; }
+  .une__bar{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+  .une__label{ display:inline-flex; align-items:center; gap:8px; font-size:.92rem; font-weight:700; }
+  .une__dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); }
+  .une__side{ display:flex; align-items:center; gap:14px; }
+  .une__all{ font-size:.9rem; font-weight:600; color:var(--muted); }
+  .une__all:hover,.une__all:focus-visible{ color:var(--navy); text-decoration:underline; text-underline-offset:3px; }
+  .une__ctrl{ display:flex; gap:8px; }
+  .une__btn{ width:34px; height:34px; border-radius:10px; border:1.5px solid var(--line); background:transparent; color:var(--navy); display:grid; place-items:center; cursor:pointer; transition:border-color .2s ease; }
+  .une__btn:hover,.une__btn:focus-visible{ border-color:var(--navy); }
+  .une__stage{ display:grid; }
+  .une__slide{ grid-area:1 / 1; display:block; opacity:0; visibility:hidden; transition:opacity .35s ease,visibility .35s; }
+  .une__slide.is-active{ opacity:1; visibility:visible; }
+  .une__date{ display:block; font-size:.85rem; font-weight:500; color:var(--muted); }
+  .une__title{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; margin-top:4px; font-size:clamp(1.25rem,2.6vw,1.7rem); font-weight:700; line-height:1.2; letter-spacing:-.01em; }
+  a.une__slide:hover .une__title,a.une__slide:focus-visible .une__title{ text-decoration:underline; text-underline-offset:4px; }
+  .une__segs{ display:flex; gap:8px; margin-top:12px; }
+  .une__seg{ flex:1; padding:8px 0; border:0; background:none; cursor:pointer; }
+  .une__track{ display:block; height:4px; border-radius:2px; background:var(--tint); overflow:hidden; }
+  .une__fill{ display:block; height:100%; width:0; background:var(--navy); }
+  .une__seg.is-done .une__fill{ width:100%; }
+  .une__seg.is-active .une__fill{ animation:une-fill 6s linear forwards; }
+  .une--static .une__seg.is-active .une__fill{ animation:none; width:100%; }
+  .une:hover .une__fill,.une:focus-within .une__fill{ animation-play-state:paused; }
+  @keyframes une-fill{ from{ width:0; } to{ width:100%; } }
 
   /* PAGE */
   .page{ max-width:1080px; margin:0 auto; padding:38px 24px 72px; }
@@ -84,8 +100,9 @@
   .top p{ margin-top:8px; color:var(--muted); font-size:1.05rem; }
   .member{ display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:12px; border:1.5px solid var(--navy); font-weight:600; font-size:.97rem; transition:background-color .2s ease,color .2s ease; }
   .member:hover,.member:focus-visible{ background:var(--navy); color:var(--white); }
+  .member--bottom{ display:none; }
 
-  /* CIQ : grande carte d'entrée, sobre */
+  /* CIQ : entrée principale */
   .ciq{ display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:18px 32px; padding:26px 30px; margin-bottom:16px; border-radius:22px; background:var(--tint); border:1px solid var(--line); }
   .ciq__top{ display:flex; align-items:center; gap:18px; }
   .ciq__ico{ flex:none; width:58px; height:58px; border-radius:17px; display:grid; place-items:center; background:var(--navy); color:var(--white); }
@@ -94,21 +111,21 @@
   .ciq__cta{ display:inline-flex; align-items:center; gap:10px; padding:13px 22px; border-radius:12px; background:var(--navy); color:var(--white); font-weight:600; white-space:nowrap; transition:background-color .2s ease; }
   .ciq__cta:hover,.ciq__cta:focus-visible{ background:var(--navy-deep); }
 
-  /* Les 3 sites de contenu */
+  /* Les 3 sites : mêmes cartes, seule la pastille d'icône change (marine, or, marine pâle) */
   .sites{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
   .site{ display:flex; flex-direction:column; background:var(--white); border:1px solid var(--line); border-radius:22px; overflow:hidden; }
   .site__head{ display:grid; grid-template-columns:48px minmax(0,1fr); gap:4px 14px; align-items:center; padding:20px 22px 16px; transition:background-color .2s ease; }
   a.site__head:hover,a.site__head:focus-visible{ background:var(--paper); }
   .site__ico{ grid-row:1 / 3; width:48px; height:48px; border-radius:14px; display:grid; place-items:center; background:var(--tint); color:var(--navy); }
+  .site--forms .site__ico{ background:var(--gold); }
+  .site--data .site__ico{ background:var(--navy); color:var(--white); }
   .site__name{ font-size:1.18rem; font-weight:700; line-height:1.15; align-self:end; }
   .site__line{ font-size:.93rem; line-height:1.35; color:var(--muted); align-self:start; }
 
   .pubs{ flex:1; margin:0 22px; border-top:1px solid var(--line); }
-  .pubs__label{ margin:13px 0 2px; font-size:.86rem; font-weight:600; color:var(--muted); }
   .pub{ display:block; padding:11px 0; border-bottom:1px solid var(--line); }
   .pub:last-child{ border-bottom:none; }
   .pub__date{ display:flex; align-items:center; gap:8px; font-size:.8rem; font-weight:500; color:var(--muted); }
-  .pub__new{ padding:1px 8px; border-radius:999px; background:var(--tint); color:var(--navy); font-size:.72rem; font-weight:700; }
   .pub__title{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; margin-top:2px; font-size:.98rem; font-weight:600; line-height:1.35; }
   a.pub:hover .pub__title,a.pub:focus-visible .pub__title{ text-decoration:underline; text-underline-offset:3px; }
   .pub--skel .skel{ display:block; height:12px; width:50%; border-radius:4px; background:rgba(36,46,99,.08); animation:pulse 1.4s ease-in-out infinite; }
@@ -134,12 +151,13 @@
   }
   @media (max-width:640px){
     .site-footer__logo{ width:220px; }
-    .alert__link{ padding:11px 16px; gap:10px; }
-    .alert__more{ display:none; }
+    .une{ padding:16px 18px 6px; border-radius:18px; margin-bottom:14px; }
+    .une__all{ display:none; }
     .page{ padding:24px 16px 48px; }
     .top{ margin-bottom:18px; }
     .top p{ font-size:1rem; }
-    .member{ width:100%; justify-content:center; }
+    .member--top{ display:none; }
+    .member--bottom{ display:flex; width:100%; justify-content:center; margin-top:14px; }
     .ciq{ grid-template-columns:minmax(0,1fr); padding:20px; border-radius:18px; gap:16px; margin-bottom:14px; }
     .ciq__ico{ width:50px; height:50px; border-radius:15px; }
     .ciq__cta{ justify-content:center; }
@@ -172,24 +190,14 @@
   </div>
 </header>
 
-<!-- À LA UNE : 1er article épinglé de actus.13080.fr ; le lien mène à actus.13080.fr/une (masqué s'il n'y a rien d'épinglé) -->
-<aside class="alert" id="alert" aria-label="À la une" hidden>
-  <a class="alert__link" href="https://actus.13080.fr/une">
-    <span class="alert__label"><span class="alert__dot" aria-hidden="true"></span>À la une</span>
-    <span class="alert__title" id="alertTitle"></span>
-    <span class="alert__more" id="alertMore"></span>
-    <svg class="alert__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-  </a>
-</aside>
-
 <main class="page">
 
   <div class="top">
     <div>
-      <h1>Bienvenue sur 13080.fr</h1>
-      <p>Le réseau du CIQ Luynes en action.</p>
+      <h1>Le réseau 13080.fr</h1>
+      <p>Le portail du CIQ Luynes en action.</p>
     </div>
-    <a class="member" href="https://adherents.13080.fr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Je suis adhérent&nbsp;: mon espace <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="member member--top" href="https://adherents.13080.fr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Je suis adhérent&nbsp;: mon espace <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 
   <section class="ciq" aria-labelledby="ciq-t">
@@ -202,38 +210,55 @@
         </div>
       </div>
     </div>
-    <a class="ciq__cta" href="https://ciq.13080.fr">En savoir plus <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="ciq__cta" href="https://ciq.13080.fr">ciq.13080.fr <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+
+  <section class="une" id="une" aria-label="À la une" hidden>
+    <div class="une__bar">
+      <span class="une__label"><span class="une__dot" aria-hidden="true"></span>À la une</span>
+      <div class="une__side">
+        <a class="une__all" href="https://actus.13080.fr/une">Tout voir</a>
+        <div class="une__ctrl" id="uneCtrl">
+          <button type="button" class="une__btn" id="unePrev" aria-label="Précédent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button type="button" class="une__btn" id="uneNext" aria-label="Suivant"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="une__stage" id="uneStage" aria-live="off"></div>
+    <div class="une__segs" id="uneSegs"></div>
   </section>
 
   <div class="sites">
-    <article class="site">
+    <article class="site site--actus">
       <a class="site__head" href="https://actus.13080.fr">
         <span class="site__ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg></span>
         <h2 class="site__name">Actualités &amp; communiqués</h2>
         <span class="site__line">Suivre la vie du CIQ et de Luynes</span>
       </a>
-      <div class="pubs" data-pubs="actus"><p class="pubs__label">Dernières publications</p><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div></div>
+      <div class="pubs" data-pubs="actus"><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div></div>
       <a class="site__all" href="https://actus.13080.fr">Tout voir sur actus.13080.fr <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </article>
-    <article class="site">
+    <article class="site site--forms">
       <a class="site__head" href="https://forms.13080.fr">
         <span class="site__ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m9 12 2 2 4-4M9 17h6"/></svg></span>
         <h2 class="site__name">Formulaires</h2>
         <span class="site__line">Répondre aux sondages, signer les pétitions</span>
       </a>
-      <div class="pubs" data-pubs="forms"><p class="pubs__label">Dernières publications</p><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div></div>
+      <div class="pubs" data-pubs="forms"><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div></div>
       <a class="site__all" href="https://forms.13080.fr">Tout voir sur forms.13080.fr <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </article>
-    <article class="site">
+    <article class="site site--data">
       <a class="site__head" href="https://data.13080.fr">
         <span class="site__ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
         <h2 class="site__name">Données ouvertes</h2>
-        <span class="site__line">Consulter les chiffres publics du CIQ LEA</span>
+        <span class="site__line">Consulter les données publiques du CIQ LEA</span>
       </a>
-      <div class="pubs" data-pubs="data"><p class="pubs__label">Dernières publications</p><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div></div>
+      <div class="pubs" data-pubs="data"><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div><div class="pub pub--skel"><span class="skel"></span><span class="skel"></span></div></div>
       <a class="site__all" href="https://data.13080.fr">Tout voir sur data.13080.fr <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </article>
   </div>
+
+  <a class="member member--bottom" href="https://adherents.13080.fr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Je suis adhérent&nbsp;: mon espace <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 
 </main>
 
@@ -255,14 +280,13 @@
     { key: 'data',  host: 'https://data.13080.fr',  pri: 1, exclude: ['static', 'tutos'] },
     { key: 'forms', host: 'https://forms.13080.fr', pri: 2, exclude: ['static', 'diffusion'] }
   ];
-  var PER_SITE = 2, MAX_PINNED = 3, TIMEOUT_MS = 6000, NEW_DAYS = 7;
+  var PER_SITE = 2, MAX_PINNED = 3, TIMEOUT_MS = 6000;
 
   function proxy(u) { return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u); }
   function el(t, c) { var e = document.createElement(t); if (c) e.className = c; return e; }
   function stripHtml(h) { var d = document.createElement('div'); d.innerHTML = h; return (d.textContent || '').replace(/\s+/g, ' ').trim(); }
   function norm(t) { return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
   function fdate(i) { try { return new Date(i).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return ''; } }
-  function isNew(i) { return (Date.now() - new Date(i).getTime()) < NEW_DAYS * 864e5; }
   function ft(url, ms) {
     var c = new AbortController(), t = setTimeout(function () { c.abort(); }, ms);
     return fetch(url, { signal: c.signal }).finally(function () { clearTimeout(t); });
@@ -272,7 +296,6 @@
       .then(function (r) { if (!r.ok) throw 0; return r.json(); })
       .catch(function () { return ft(proxy(url), TIMEOUT_MS).then(function (r) { if (!r.ok) throw 0; return r.json(); }); });
   }
-  // Identifiants des catégories à exclure sur ce site (par slug)
   function excludedIds(site) {
     return fj(site.host + '/wp-json/wp/v2/categories?per_page=100&slug=' + site.exclude.join(',') + '&_fields=id')
       .then(function (c) { return Array.isArray(c) ? c.map(function (x) { return x.id; }) : []; })
@@ -300,9 +323,36 @@
 
   function renderPinned(list) {
     if (!list.length) return;
-    document.getElementById('alertTitle').textContent = list[0].title;
-    if (list.length > 1) document.getElementById('alertMore').textContent = '+' + (list.length - 1) + ' autre' + (list.length > 2 ? 's' : '');
-    document.getElementById('alert').hidden = false;
+    var box = document.getElementById('une'), stage = document.getElementById('uneStage'), segs = document.getElementById('uneSegs');
+    var n = list.length, idx = 0, auto = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (!auto) box.classList.add('une--static');
+    var slides = [], dots = [];
+    list.forEach(function (it, i) {
+      var a = el('a', 'une__slide'); a.href = it.link;
+      var d = el('time', 'une__date'); d.setAttribute('datetime', it.date); d.textContent = fdate(it.date);
+      var t = el('span', 'une__title'); t.textContent = it.title;
+      a.appendChild(d); a.appendChild(t); stage.appendChild(a); slides.push(a);
+      var b = el('button', 'une__seg'); b.type = 'button'; b.setAttribute('aria-label', 'Article ' + (i + 1) + ' sur ' + n);
+      var tr = el('span', 'une__track'), f = el('span', 'une__fill'); tr.appendChild(f); b.appendChild(tr);
+      b.addEventListener('click', function () { go(i); });
+      f.addEventListener('animationend', function () { if (auto) go(idx + 1); });
+      segs.appendChild(b); dots.push(b);
+    });
+    function go(i) {
+      idx = (i + n) % n;
+      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === idx); s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
+      dots.forEach(function (b, k) {
+        b.classList.remove('is-active'); b.classList.toggle('is-done', k < idx);
+        if (k === idx) { void b.offsetWidth; b.classList.add('is-active'); b.setAttribute('aria-current', 'true'); } else b.removeAttribute('aria-current');
+      });
+    }
+    if (n < 2) { document.getElementById('uneCtrl').hidden = true; segs.hidden = true; }
+    else {
+      document.getElementById('unePrev').addEventListener('click', function () { go(idx - 1); });
+      document.getElementById('uneNext').addEventListener('click', function () { go(idx + 1); });
+    }
+    go(0);
+    box.hidden = false;
   }
 
   function renderPubs(key, items) {
@@ -310,11 +360,9 @@
     if (!box) return;
     box.innerHTML = '';
     if (!items || !items.length) { box.className = 'pubs pubs--empty'; return; }
-    var lab = el('p', 'pubs__label'); lab.textContent = 'Dernières publications'; box.appendChild(lab);
     items.forEach(function (it) {
       var a = el('a', 'pub'); a.href = it.link;
       var d = el('span', 'pub__date');
-      if (isNew(it.date)) { var n = el('span', 'pub__new'); n.textContent = 'Nouveau'; d.appendChild(n); }
       var t = el('time'); t.setAttribute('datetime', it.date); t.textContent = fdate(it.date); d.appendChild(t);
       var h = el('span', 'pub__title'); h.textContent = it.title;
       a.appendChild(d); a.appendChild(h); box.appendChild(a);
@@ -326,7 +374,6 @@
     var pinned = by.actus.pinned.slice(0, MAX_PINNED);
     renderPinned(pinned);
 
-    // Ce qui est « à la une » n'est pas répété en dessous ; pas de doublon de titre entre sites
     var used = {}, pinnedIds = {};
     pinned.forEach(function (p) { used[norm(p.title)] = true; pinnedIds[p.id] = true; });
     SITES.slice().sort(function (a, b) { return a.pri - b.pri; }).forEach(function (s) {
