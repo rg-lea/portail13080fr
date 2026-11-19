@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Déposer un document | 13080.fr</title>
+<link rel="icon" href="https://actus.13080.fr/wp-content/uploads/2026/08/CIQ-LEA-Logo-carre-bleu.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+  :root{ --navy:#242E63; --navy-deep:#171B41; --gold:#FFC500; --gold-dark:#AD8901; --white:#fff; --paper:#F7F6F2; --tint:#EEF0F7; --muted:rgba(36,46,99,.68); --line:rgba(36,46,99,.13); --ok:#1F7A4D; --err:#B3261E; }
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  body{margin:0;background:var(--paper);color:var(--navy);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,p{margin:0;}
+  :focus-visible{outline:3px solid var(--gold-dark);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important;}}
+
+  .site-header{background:#242E63;display:flex;justify-content:center;align-items:center;padding:20px 16px;}
+  .site-header__logo{width:300px;height:auto;max-width:80vw;}
+  .sub-header{background:#242E63;padding:16px 24px;border-top:1px solid rgba(255,255,255,.1);}
+  .sub-header__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .sub-header__site-link{color:#fff;font-weight:600;font-size:16px;}
+  .sub-header__site-link:hover,.sub-header__site-link:focus{color:#FFC500;}
+  .sub-header__btn{font-size:15px;font-weight:600;padding:10px 20px;border-radius:8px;background:#FFC500;color:#242E63;white-space:nowrap;transition:background-color .2s ease;}
+  .sub-header__btn:hover,.sub-header__btn:focus{background:#e6b100;}
+
+  .page{max-width:760px;margin:0 auto;padding:56px 24px 96px;display:flex;flex-direction:column;gap:28px;}
+  .top h1{font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:1.1;font-weight:700;letter-spacing:-.015em;}
+  .top p{margin-top:12px;color:var(--muted);font-size:1.08rem;}
+
+  .drop{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:48px 28px;background:var(--white);border:2px dashed rgba(36,46,99,.3);border-radius:22px;cursor:pointer;transition:background-color .2s ease,border-color .2s ease;}
+  .drop:hover,.drop:focus-visible,.drop.is-over{background:var(--tint);border-color:var(--navy);}
+  .drop__ico{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:var(--gold);color:var(--navy);}
+  .drop__title{font-size:1.25rem;font-weight:700;line-height:1.25;}
+  .drop__hint{font-size:.94rem;color:var(--muted);}
+  .drop__btn{display:inline-flex;padding:13px 24px;border-radius:12px;background:var(--navy);color:var(--white);font-weight:600;font-family:inherit;font-size:1rem;border:0;cursor:pointer;transition:background-color .2s ease;}
+  .drop__btn:hover,.drop__btn:focus-visible{background:var(--navy-deep);}
+  .drop input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+
+  .list{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none;}
+  .file{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:16px 20px;background:var(--white);border:1px solid var(--line);border-radius:16px;}
+  .file__name{font-weight:600;overflow-wrap:anywhere;}
+  .file__meta{grid-column:1;font-size:.86rem;color:var(--muted);}
+  .file__state{grid-row:1 / 3;grid-column:2;font-size:.9rem;font-weight:600;white-space:nowrap;}
+  .file__bar{grid-column:1 / -1;height:4px;border-radius:2px;background:var(--tint);overflow:hidden;}
+  .file__fill{display:block;height:100%;width:0;background:var(--navy);transition:width .15s linear;}
+  .file.is-ok .file__state{color:var(--ok);}
+  .file.is-ok .file__fill{background:var(--ok);}
+  .file.is-err .file__state{color:var(--err);}
+  .file.is-err .file__fill{background:var(--err);}
+
+  .site-footer{background:#242E63;color:#fff;display:flex;flex-direction:column;align-items:center;padding:44px 16px;text-align:center;}
+  .site-footer__logo{width:300px;height:auto;max-width:80vw;margin:0 0 24px;}
+  .site-footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .site-footer__link{font-size:14px;font-weight:500;padding:4px 2px;}
+  .site-footer__link:hover,.site-footer__link:focus{color:#FFC500;}
+  .site-footer__separator{color:#FFC500;font-size:14px;}
+
+  @media (max-width:640px){
+    .sub-header{padding:12px 16px;}
+    .sub-header__btn{padding:9px 16px;font-size:14px;}
+    .page{padding:36px 16px 64px;}
+    .drop{padding:36px 18px;border-radius:18px;}
+    .file{padding:14px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://13080.fr" aria-label="Retour à l'accueil"><img src="https://actus.13080.fr/wp-content/uploads/2026/08/CIQ-LEA-Logo-rectangulaire-blanc.png" alt="CIQ Léa" class="site-header__logo"></a>
+</header>
+<header class="sub-header">
+  <div class="sub-header__inner">
+    <a href="https://13080.fr/" class="sub-header__site-link">13080.fr</a>
+    <a href="https://ciq.13080.fr/contact" class="sub-header__btn">Nous contacter</a>
+  </div>
+</header>
+
+<main class="page">
+  <div class="top">
+    <h1>Déposer un document</h1>
+    <p>Envoyez un fichier au CIQ. Formats acceptés&nbsp;: PDF, Word, Excel, images, texte. Taille maximale&nbsp;: 10&nbsp;Mo par fichier.</p>
+  </div>
+
+  <label class="drop" id="drop" for="input" tabindex="0">
+    <span class="drop__ico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></span>
+    <span class="drop__title">Glissez vos fichiers ici</span>
+    <span class="drop__hint">ou</span>
+    <span class="drop__btn">Choisir des fichiers</span>
+    <input type="file" id="input" multiple>
+  </label>
+
+  <ul class="list" id="list" aria-live="polite"></ul>
+</main>
+
+<footer class="site-footer">
+  <img src="https://actus.13080.fr/wp-content/uploads/2026/08/CIQ-LEA-Logo-rectangulaire-blanc.png" alt="CIQ Léa" class="site-footer__logo">
+  <nav class="site-footer__links" aria-label="Liens du pied de page">
+    <a href="https://13080.fr/mentions-legales" class="site-footer__link">Mentions légales</a>
+    <span class="site-footer__separator">•</span>
+    <a href="https://ciq.13080.fr/contact" class="site-footer__link">Nous contacter</a>
+  </nav>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var ENDPOINT = 'upload.php';          // à adapter si le script est ailleurs
+  var MAX = 10 * 1024 * 1024;
+  var EXT = ['pdf','doc','docx','xls','xlsx','odt','ods','txt','csv','jpg','jpeg','png'];
+  var drop = document.getElementById('drop'), input = document.getElementById('input'), list = document.getElementById('list');
+
+  function size(n) { return n < 1048576 ? Math.max(1, Math.round(n / 1024)) + ' Ko' : (n / 1048576).toFixed(1).replace('.', ',') + ' Mo'; }
+  function row(f) {
+    var li = document.createElement('li'); li.className = 'file';
+    li.innerHTML = '<span class="file__name"></span><span class="file__state">En attente</span><span class="file__meta"></span><span class="file__bar"><span class="file__fill"></span></span>';
+    li.querySelector('.file__name').textContent = f.name;
+    li.querySelector('.file__meta').textContent = size(f.size);
+    list.appendChild(li);
+    return li;
+  }
+  function fail(li, msg) { li.classList.add('is-err'); li.querySelector('.file__state').textContent = 'Échec'; li.querySelector('.file__meta').textContent += ' · ' + msg; }
+
+  function send(f) {
+    var li = row(f), ext = (f.name.split('.').pop() || '').toLowerCase();
+    if (EXT.indexOf(ext) < 0) return fail(li, 'format non accepté');
+    if (f.size > MAX) return fail(li, 'fichier trop lourd (10 Mo maximum)');
+    var fd = new FormData(); fd.append('file', f);
+    var x = new XMLHttpRequest(), st = li.querySelector('.file__state'), fill = li.querySelector('.file__fill');
+    st.textContent = '0 %';
+    x.open('POST', ENDPOINT);
+    x.upload.onprogress = function (e) { if (e.lengthComputable) { var p = Math.round(e.loaded / e.total * 100); fill.style.width = p + '%'; st.textContent = p + ' %'; } };
+    x.onload = function () {
+      var r = {}; try { r = JSON.parse(x.responseText); } catch (e) {}
+      if (x.status === 200 && r.ok) { li.classList.add('is-ok'); fill.style.width = '100%'; st.textContent = 'Envoyé'; if (r.name && r.name !== f.name) li.querySelector('.file__meta').textContent += ' · enregistré sous ' + r.name; }
+      else fail(li, r.error || 'erreur du serveur');
+    };
+    x.onerror = function () { fail(li, 'connexion impossible'); };
+    x.send(fd);
+  }
+  function handle(files) { Array.prototype.forEach.call(files, send); input.value = ''; }
+
+  input.addEventListener('change', function () { handle(input.files); });
+  drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+  ['dragenter', 'dragover'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
+  ['dragleave', 'drop'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
+  drop.addEventListener('drop', function (e) { handle(e.dataTransfer.files); });
+})();
+</script>
+</body>
+</html>
